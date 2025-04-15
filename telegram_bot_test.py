@@ -7,7 +7,7 @@ from telegram.ext import (
     ApplicationBuilder, CommandHandler, MessageHandler, filters, ContextTypes
 )
 
-TOKEN = '7505981019:AAEpT3ScU8zbsTzqFbAs26bopEUNjdOyySM'  # ← вставь токен от BotFather
+TOKEN = os.getenv("BOT_TOKEN")
 ADMIN_ID = 344854611 # ← вставь свой Telegram user_id
 
 user_sessions = {}
