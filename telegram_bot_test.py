@@ -557,22 +557,10 @@ async def stop(update: Update, context: ContextTypes.DEFAULT_TYPE):
         await update.message.reply_text("🚫 У тебя нет прав останавливать бота.")
 
 if __name__ == '__main__':
-    import asyncio
-
-    async def main():
-        app = ApplicationBuilder().token(TOKEN).build()
-
-        # Удаляем старый Webhook, если остался
-        await app.bot.delete_webhook(drop_pending_updates=True)
-
-        # Добавляем обработчики
-        app.add_handler(CommandHandler("start", start))
-        app.add_handler(CommandHandler("batch", batch))
-        app.add_handler(CommandHandler("done", done))
-        app.add_handler(CommandHandler("stop", stop))
-        app.add_handler(MessageHandler(filters.Document.ALL, handle_document))
-
-        print("🚀 Бот стартует через polling...")
-        await app.run_polling()
-
-    asyncio.run(main())
+    app = ApplicationBuilder().token(TOKEN).build()
+    app.add_handler(CommandHandler("start", start))
+    app.add_handler(CommandHandler("batch", batch))
+    app.add_handler(CommandHandler("done", done))
+    app.add_handler(CommandHandler("stop", stop))
+    app.add_handler(MessageHandler(filters.Document.ALL, handle_document))
+    app.run_polling()
