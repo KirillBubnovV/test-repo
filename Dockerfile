@@ -17,4 +17,4 @@ RUN pip install --upgrade pip && pip install -r requirements.txt
 COPY . .
 
 # Запускаем бота
-CMD ["python", "telegram_bot.py"]
+CMD ["python", "telegram_bot_test.py"]
