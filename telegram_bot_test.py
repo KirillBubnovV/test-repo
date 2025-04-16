@@ -179,6 +179,8 @@ async def done(update: Update, context: ContextTypes.DEFAULT_TYPE):
                 
                 # Сортировка по fraud_score
                 fraud_users_sorted_upgate = df_user_stats_upgate.sort_values(by='fraud_score_upgate', ascending=False)
+
+                fraud_users_sorted_upgate = fraud_users_sorted_upgate.reset_index()
                 
                 # Выводим результат
                 df = fraud_users_sorted_upgate.copy()
@@ -295,6 +297,7 @@ async def done(update: Update, context: ContextTypes.DEFAULT_TYPE):
                 # Сортировка по fraud_score
                 fraud_users_sorted_unlimit = df_user_stats_unlimit.sort_values(by='fraud_score_unlimit', ascending=False)
                 
+                fraud_users_sorted_unlimit = fraud_users_sorted_unlimit.reset_index()
                 # Выводим результат
                 df = fraud_users_sorted_unlimit.copy()
             elif df_name == "df_payabl":
@@ -402,6 +405,8 @@ async def done(update: Update, context: ContextTypes.DEFAULT_TYPE):
                 
                 # Сортировка по fraud_score
                 fraud_users_sorted_payabl = df_user_stats_payabl.sort_values(by='fraud_score_payabl', ascending=False)
+
+                fraud_users_sorted_payabl = fraud_users_sorted_payabl.reset_index()
                 
                 df = fraud_users_sorted_payabl.copy()
 
@@ -495,6 +500,7 @@ async def done(update: Update, context: ContextTypes.DEFAULT_TYPE):
                 
                 # Группировка по email для вычисления суммарных флагов
                 df_unique_emails_centrobill = df_stats_centrobill.drop_duplicates(subset='E-mail')
+                
                 df_user_stats_centrobill = df_unique_emails_centrobill.groupby('E-mail')[list(weights_centrobill.keys())].sum()
                 
                 # Подсчет итогового fraud_score с нормализацией
@@ -505,6 +511,8 @@ async def done(update: Update, context: ContextTypes.DEFAULT_TYPE):
                 
                 # Сортировка по fraud_score
                 fraud_users_sorted_centrobill = df_user_stats_centrobill.sort_values(by='fraud_score_centrobill', ascending=False)
+                
+                fraud_users_sorted_centrobill = fraud_users_sorted_centrobill.reset_index()
                 
                 df = fraud_users_sorted_centrobill.copy()
             else:
