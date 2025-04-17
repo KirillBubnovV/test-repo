@@ -183,7 +183,7 @@ async def done(update: Update, context: ContextTypes.DEFAULT_TYPE):
                 fraud_users_sorted_upgate = fraud_users_sorted_upgate.reset_index()
                 
                 # Выводим результат
-                df = fraud_users_sorted_upgate.copy()
+                df = fraud_users_sorted_upgate[['payment.email', 'fraud_score_upgate']].copy()
                 
             elif df_name == "df_unlimit":
                 df = pd.read_csv(path, sep=";")
@@ -299,7 +299,7 @@ async def done(update: Update, context: ContextTypes.DEFAULT_TYPE):
                 
                 fraud_users_sorted_unlimit = fraud_users_sorted_unlimit.reset_index()
                 # Выводим результат
-                df = fraud_users_sorted_unlimit.copy()
+                df = fraud_users_sorted_unlimit[['Email', 'fraud_score_unlimit']].copy()
             elif df_name == "df_payabl":
                 df = pd.read_csv(path)
                 payabl = df.copy()
@@ -408,7 +408,7 @@ async def done(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
                 fraud_users_sorted_payabl = fraud_users_sorted_payabl.reset_index()
                 
-                df = fraud_users_sorted_payabl.copy()
+                df = fraud_users_sorted_payabl[['EMail', 'fraud_score_payabl']].copy()
 
             elif df_name == "df_centrobill":
                 df = pd.read_csv(path, sep=";")
@@ -514,7 +514,7 @@ async def done(update: Update, context: ContextTypes.DEFAULT_TYPE):
                 
                 fraud_users_sorted_centrobill = fraud_users_sorted_centrobill.reset_index()
                 
-                df = fraud_users_sorted_centrobill.copy()
+                df = fraud_users_sorted_centrobill[['E-mail', 'fraud_score_centrobill']].copy()
             else:
                 # Пример добавки source метки для остальных (можно убрать)
                 df['source'] = df_name
