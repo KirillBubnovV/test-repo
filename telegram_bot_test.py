@@ -8,7 +8,7 @@ from telegram.ext import (
 )
 
 TOKEN = os.getenv("BOT_TOKEN")
-ADMIN_ID = 344854611 # ← вставь свой Telegram user_id
+ADMIN_ID = 344854611 
 
 user_sessions = {}
 
